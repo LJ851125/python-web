@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表单页面</title>
+    <link rel="stylesheet" href="{{ url_for('email.static', filename='css/styles.css') }}">
+    <style>
+        /* 新增错误提示样式 */
+     .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" value="{{ form.name or '' }}"><br>
+
+        <label for="email">邮箱：</label>
+        <input type="text" id="email" name="email" value="{{ form.email or '' }}"><br>
+
+        <label for="message">留言：</label>
+        <textarea id="message" name="message">{{ form.message or '' }}</textarea><br>
+
+        <input type="submit" value="提交">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="error-message">
+                    {% for category, message in messages %}
+                        {% if category == 'error' %}
+                            {{ message }}<br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </form>
+</body>
+</html>

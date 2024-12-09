@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>提交成功</title>
+    <link rel="stylesheet" href="{{ url_for('email.static', filename='css/styles.css') }}">
+    <style>
+      .success-message {
+            color: #800004;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        // 定义一个函数用于跳转到interface.html
+        function redirectToInterface() {
+            window.location.href = "{{ url_for('email.interface') }}";
+        }
+        // 使用window.onload事件，在页面加载完成后等待三秒执行跳转函数
+        window.onload = function () {
+            setTimeout(redirectToInterface, 3000);
+        };
+    </script>
+</head>
+<body>
+    <div class="success-message">
+        表单提交成功！感谢您的留言！
+    </div>
+</body>
+</html>
